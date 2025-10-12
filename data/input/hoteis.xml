@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hoteis>
+  <hotel>
+    <id>1</id>
+    <nome>Hotel 1</nome>
+    <cidade>Porto</cidade>
+    <pais>Portugal</pais>
+    <quartos>66</quartos>
+    <estrelas>5</estrelas>
+  </hotel>
+  <hotel>
+    <id>2</id>
+    <nome>Hotel 2</nome>
+    <cidade>Paris</cidade>
+    <pais>França</pais>
+    <quartos>94</quartos>
+    <estrelas>3</estrelas>
+  </hotel>
+  <hotel>
+    <id>3</id>
+    <nome>Hotel 3</nome>
+    <cidade>Madrid</cidade>
+    <pais>Espanha</pais>
+    <quartos>115</quartos>
+    <estrelas>3</estrelas>
+  </hotel>
+  <hotel>
+    <id>4</id>
+    <nome>Hotel 4</nome>
+    <cidade>Lisboa</cidade>
+    <pais>Portugal</pais>
+    <quartos>109</quartos>
+    <estrelas>3</estrelas>
+  </hotel>
+  <hotel>
+    <id>5</id>
+    <nome>Hotel 5</nome>
+    <cidade>Porto</cidade>
+    <pais>Portugal</pais>
+    <quartos>27</quartos>
+    <estrelas>4</estrelas>
+  </hotel>
+</hoteis>
