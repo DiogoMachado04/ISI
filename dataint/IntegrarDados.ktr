@@ -431,7 +431,7 @@
     <created_date>2025/10/16 22:14:38.549</created_date>
     <modified_user>-</modified_user>
     <modified_date>2025/10/16 22:14:38.549</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -484,206 +484,52 @@
     </hop>
     <hop>
       <from>Estado do cliente</from>
+      <to>Ordena por cliente ID</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordena por cliente ID</from>
+      <to>Soma o total gasto</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Soma o total gasto</from>
+      <to>Clientes totais</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Estado do cliente</from>
       <to>Text file output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Importa reservas válidas</name>
-    <type>TextFileInput</type>
+    <name>Calculo do valor total</name>
+    <type>Calculator</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <accept_filenames>N</accept_filenames>
-    <passing_through_fields>N</passing_through_fields>
-    <accept_field/>
-    <accept_stepname/>
-    <separator>,</separator>
-    <enclosure>"</enclosure>
-    <enclosure_breaks>N</enclosure_breaks>
-    <escapechar/>
-    <header>Y</header>
-    <nr_headerlines>1</nr_headerlines>
-    <footer>N</footer>
-    <nr_footerlines>1</nr_footerlines>
-    <line_wrapped>N</line_wrapped>
-    <nr_wraps>1</nr_wraps>
-    <layout_paged>N</layout_paged>
-    <nr_lines_per_page>80</nr_lines_per_page>
-    <nr_lines_doc_header>0</nr_lines_doc_header>
-    <noempty>Y</noempty>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <rownumByFile>N</rownumByFile>
-    <rownum_field/>
-    <format>DOS</format>
-    <encoding>UTF-8</encoding>
-    <length>Characters</length>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name>${Internal.Entry.Current.Directory}\..\data\output\reservas_validas.csv</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <type>CSV</type>
-      <compression>None</compression>
-    </file>
-    <filters>
-    </filters>
-    <fields>
-      <field>
-        <name>id</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>cliente_id</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>hotel_id</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>check_in</name>
-        <type>Date</type>
-        <format>yyyy-MM-dd</format>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>check_out</name>
-        <type>Date</type>
-        <format>yyyy-MM-dd</format>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>preco_por_noite</name>
-        <type>BigNumber</type>
-        <format>#.###</format>
-        <currency>€</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>estado</name>
-        <type>String</type>
-        <format/>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>10</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>num_dias</name>
-        <type>Integer</type>
-        <format>#</format>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <error_ignored>N</error_ignored>
-    <skip_bad_files>N</skip_bad_files>
-    <file_error_field/>
-    <file_error_message_field/>
-    <error_line_skipped>N</error_line_skipped>
-    <error_count_field/>
-    <error_fields_field/>
-    <error_text_field/>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <date_format_lenient>Y</date_format_lenient>
-    <date_format_locale>pt_PT</date_format_locale>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>preco_total</field_name>
+      <calc_type>MULTIPLY</calc_type>
+      <field_a>preco_por_noite</field_a>
+      <field_b>num_dias</field_b>
+      <field_c/>
+      <value_type>BigNumber</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -693,8 +539,217 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>288</yloc>
+      <xloc>544</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Estado do cliente</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>if (nome_cliente == null || nome_cliente == "" || email_cliente == null || email_cliente == "") {
+    estado_cliente = "inválido";
+} else {
+    estado_cliente = "válido";
+}
+
+// Retorna a linha modificada
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>estado_cliente</name>
+        <rename>estado_cliente</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>704</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore/>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname/>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>hotel_id</name>
+      </field>
+      <field>
+        <name>nome_hotel</name>
+      </field>
+      <field>
+        <name>pais_hotel</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>total_hotel</aggregate>
+        <subject>preco_total</subject>
+        <type>SUM</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Hoteis totais</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>${Internal.Entry.Current.Directory}\..\data\output\hoteis_totais</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery/>
+    </file>
+    <fields>
+      <field>
+        <name>hotel_id</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>nome_hotel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>7</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>pais_hotel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>8</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>total_hotel</name>
+        <type>BigNumber</type>
+        <format/>
+        <currency/>
+        <decimal>.</decimal>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>944</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1023,38 +1078,207 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
+      <xloc>432</xloc>
       <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Calculo do valor total</name>
-    <type>Calculator</type>
+    <name>Importa reservas válidas</name>
+    <type>TextFileInput</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>preco_total</field_name>
-      <calc_type>MULTIPLY</calc_type>
-      <field_a>preco_por_noite</field_a>
-      <field_b>num_dias</field_b>
-      <field_c/>
-      <value_type>BigNumber</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
+    <accept_filenames>N</accept_filenames>
+    <passing_through_fields>N</passing_through_fields>
+    <accept_field/>
+    <accept_stepname/>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_breaks>N</enclosure_breaks>
+    <escapechar/>
+    <header>Y</header>
+    <nr_headerlines>1</nr_headerlines>
+    <footer>N</footer>
+    <nr_footerlines>1</nr_footerlines>
+    <line_wrapped>N</line_wrapped>
+    <nr_wraps>1</nr_wraps>
+    <layout_paged>N</layout_paged>
+    <nr_lines_per_page>80</nr_lines_per_page>
+    <nr_lines_doc_header>0</nr_lines_doc_header>
+    <noempty>Y</noempty>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <rownumByFile>N</rownumByFile>
+    <rownum_field/>
+    <format>DOS</format>
+    <encoding>UTF-8</encoding>
+    <length>Characters</length>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <file>
+      <name>${Internal.Entry.Current.Directory}\..\data\output\reservas_validas.csv</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+      <type>CSV</type>
+      <compression>None</compression>
+    </file>
+    <filters>
+    </filters>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>cliente_id</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>hotel_id</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>check_in</name>
+        <type>Date</type>
+        <format>yyyy-MM-dd</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>check_out</name>
+        <type>Date</type>
+        <format>yyyy-MM-dd</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>preco_por_noite</name>
+        <type>BigNumber</type>
+        <format>#.###</format>
+        <currency>€</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>estado</name>
+        <type>String</type>
+        <format/>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>10</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>num_dias</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <error_ignored>N</error_ignored>
+    <skip_bad_files>N</skip_bad_files>
+    <file_error_field/>
+    <file_error_message_field/>
+    <error_line_skipped>N</error_line_skipped>
+    <error_count_field/>
+    <error_fields_field/>
+    <error_text_field/>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <date_format_lenient>Y</date_format_lenient>
+    <date_format_locale>pt_PT</date_format_locale>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1064,8 +1288,50 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>224</yloc>
+      <xloc>176</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Ordena por ID de hotel</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>hotel_id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>736</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1119,58 +1385,6 @@
     </remotesteps>
     <GUI>
       <xloc>416</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Estado do cliente</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>if (nome_cliente == null || nome_cliente == "" || email_cliente == null || email_cliente == "") {
-    estado_cliente = "inválido";
-} else {
-    estado_cliente = "válido";
-}
-
-// Retorna a linha modificada
-
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>estado_cliente</name>
-        <rename>estado_cliente</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1236,101 +1450,7 @@
     </GUI>
   </step>
   <step>
-    <name>Group by</name>
-    <type>GroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <all_rows>N</all_rows>
-    <ignore_aggregate>N</ignore_aggregate>
-    <field_ignore/>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>grp</prefix>
-    <add_linenr>N</add_linenr>
-    <linenr_fieldname/>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>hotel_id</name>
-      </field>
-      <field>
-        <name>nome_hotel</name>
-      </field>
-      <field>
-        <name>pais_hotel</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>total_hotel</aggregate>
-        <subject>preco_total</subject>
-        <type>SUM</type>
-        <valuefield/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>832</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Ordena por ID de hotel</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>hotel_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>720</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Hoteis totais</name>
+    <name>Clientes totais</name>
     <type>TextFileOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1354,7 +1474,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}\..\data\output\hoteis_totais</name>
+      <name>${Internal.Entry.Current.Directory}\..\data\output\clientes_totais</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>csv</extention>
@@ -1372,7 +1492,7 @@
     </file>
     <fields>
       <field>
-        <name>hotel_id</name>
+        <name>cliente_id</name>
         <type>Integer</type>
         <format>#</format>
         <currency>€</currency>
@@ -1384,7 +1504,7 @@
         <precision>0</precision>
       </field>
       <field>
-        <name>nome_hotel</name>
+        <name>nome_cliente</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1392,11 +1512,11 @@
         <group/>
         <nullif/>
         <trim_type>none</trim_type>
-        <length>7</length>
+        <length>16</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>pais_hotel</name>
+        <name>pais_cliente</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1408,7 +1528,19 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>total_hotel</name>
+        <name>email_cliente</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>30</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>total_gasto</name>
         <type>BigNumber</type>
         <format/>
         <currency/>
@@ -1429,8 +1561,105 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
-      <yloc>368</yloc>
+      <xloc>1104</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Ordena por cliente ID</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>cliente_id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Soma o total gasto</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore/>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname/>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>cliente_id</name>
+      </field>
+      <field>
+        <name>nome_cliente</name>
+      </field>
+      <field>
+        <name>pais_cliente</name>
+      </field>
+      <field>
+        <name>email_cliente</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>total_gasto</aggregate>
+        <subject>preco_total</subject>
+        <type>SUM</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1459,7 +1688,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${Internal.Entry.Current.Directory}\..\data\output\clientes_totais</name>
+      <name>${Internal.Entry.Current.Directory}\..\data\output\reservas_totais</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>csv</extention>
@@ -1643,7 +1872,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>224</yloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

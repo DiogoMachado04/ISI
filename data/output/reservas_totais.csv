@@ -1,0 +1,9 @@
+id,cliente_id,hotel_id,check_in,check_out,preco_por_noite,estado,num_dias,nome_cliente,email_cliente,pais_cliente,preco_total,estado_cliente
+1,4,5,2025-10-22,2025-10-28,80.92,confirmada,6,                ,                              ,        ,"485,52",inválido
+2,9,3,2025-10-17,2025-10-21,109.96,confirmada,4,Rui Silva       ,rui.silva7@hotmail.com        ,França  ,"439,84",válido
+4,2,3,2025-10-11,2025-10-14,145.92,confirmada,3,Patrícia Pereira,patricia.pereira73@outlook.com,França  ,"437,76",válido
+12,7,2,2025-10-19,2025-10-22,105.07,confirmada,3,Inês Oliveira   ,ines.oliveira48@gmail.com     ,França  ,"315,21",válido
+15,4,5,2025-10-10,2025-10-11,110.97,confirmada,1,                ,                              ,        ,"110,97",inválido
+16,5,3,2025-10-06,2025-10-07,76.53,confirmada,1,Diogo Pereira   ,diogo.pereira10@yahoo.com     ,Espanha ,"76,53",válido
+17,2,2,2025-10-06,2025-10-10,142.51,confirmada,4,Patrícia Pereira,patricia.pereira73@outlook.com,França  ,"570,04",válido
+19,8,1,2025-09-30,2025-10-04,60.2,confirmada,4,Diogo Rodrigues ,diogo.rodrigues87@hotmail.com ,Portugal,"240,8",válido

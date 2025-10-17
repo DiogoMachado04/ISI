@@ -1,0 +1,280 @@
+[
+    {
+        "id": "841d407c7ad20401",
+        "type": "inject",
+        "z": "6f5134d04710459c",
+        "name": "Ler ficheiro hoteis_totais",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 140,
+        "wires": [
+            [
+                "d77fe4768b6ec566"
+            ]
+        ]
+    },
+    {
+        "id": "d77fe4768b6ec566",
+        "type": "file in",
+        "z": "6f5134d04710459c",
+        "name": "Leitura CSV Hotéis",
+        "filename": "C:\\\\Users\\\\diogo\\\\Documents\\\\GitHub\\\\ISI\\\\data\\\\output\\\\hoteis_totais.csv",
+        "format": "utf8",
+        "sendError": false,
+        "x": 420,
+        "y": 140,
+        "wires": [
+            [
+                "514015e89c5b498a"
+            ]
+        ]
+    },
+    {
+        "id": "514015e89c5b498a",
+        "type": "csv",
+        "z": "6f5134d04710459c",
+        "name": "Converter CSV → JSON (Hotéis)",
+        "sep": ",",
+        "hdrin": true,
+        "multi": "mult",
+        "ret": "\\n",
+        "strings": true,
+        "x": 690,
+        "y": 140,
+        "wires": [
+            [
+                "be4c80b3e1704886"
+            ]
+        ]
+    },
+    {
+        "id": "be4c80b3e1704886",
+        "type": "function",
+        "z": "6f5134d04710459c",
+        "name": "Preparar dados (Hotéis)",
+        "func": "let data = msg.payload;\n\nmsg.payload = [\n  {\n    series: [\"Total Recebido\"],\n    data: [data.map(d => parseFloat(d.total_hotel))],\n    labels: data.map(d => d.nome_hotel.trim())\n  }\n];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 140,
+        "wires": [
+            [
+                "566376d3b8395ad5"
+            ]
+        ]
+    },
+    {
+        "id": "566376d3b8395ad5",
+        "type": "ui_chart",
+        "z": "6f5134d04710459c",
+        "name": "Gráfico Receitas por Hotel",
+        "group": "c53ac0f88cf8d2f4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Receita total por hotel",
+        "chartType": "bar",
+        "legend": "true",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "Sem dados",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": true,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1250,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0aeefdf5d52506e7",
+        "type": "inject",
+        "z": "6f5134d04710459c",
+        "name": "Ler ficheiro clientes_totais",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 260,
+        "wires": [
+            [
+                "403d86f4dd54bc2c"
+            ]
+        ]
+    },
+    {
+        "id": "403d86f4dd54bc2c",
+        "type": "file in",
+        "z": "6f5134d04710459c",
+        "name": "Leitura CSV Clientes",
+        "filename": "C:\\\\Users\\\\diogo\\\\Documents\\\\GitHub\\\\ISI\\\\data\\\\output\\\\clientes_totais.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "sendError": false,
+        "allProps": false,
+        "x": 420,
+        "y": 260,
+        "wires": [
+            [
+                "e05c02545faf4d2a"
+            ]
+        ]
+    },
+    {
+        "id": "e05c02545faf4d2a",
+        "type": "csv",
+        "z": "6f5134d04710459c",
+        "name": "Converter CSV → JSON (Clientes)",
+        "sep": ",",
+        "hdrin": true,
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": 0,
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": false,
+        "x": 700,
+        "y": 260,
+        "wires": [
+            [
+                "6d5efb2de786b206"
+            ]
+        ]
+    },
+    {
+        "id": "6d5efb2de786b206",
+        "type": "function",
+        "z": "6f5134d04710459c",
+        "name": "Preparar dados (Clientes)",
+        "func": "let data = msg.payload;\n\nmsg.payload = [\n  {\n    series: [\"Total Gasto\"],\n    data: [data.map(d => parseFloat(d.total_gasto))],\n    labels: data.map(d => {\n      // Se nome for nulo, indefinido ou vazio → \"Cliente Inválido\"\n      if (!d.nome_cliente || d.nome_cliente.trim() === \"\") {\n        return \"Clientes Inválidos\";\n      }\n      return d.nome_cliente.trim();\n    })\n  }\n];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 260,
+        "wires": [
+            [
+                "dc8a8c93b36fe0fa"
+            ]
+        ]
+    },
+    {
+        "id": "dc8a8c93b36fe0fa",
+        "type": "ui_chart",
+        "z": "6f5134d04710459c",
+        "name": "Gráfico Total por Cliente",
+        "group": "c53ac0f88cf8d2f4",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "label": "Total gasto por cliente",
+        "chartType": "bar",
+        "legend": "true",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "Sem dados",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": true,
+        "useUTC": false,
+        "colors": [
+            "#2ca02c",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1250,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c53ac0f88cf8d2f4",
+        "type": "ui_group",
+        "name": "Dashboard Principal",
+        "tab": "dc087c3777f7069e",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "dc087c3777f7069e",
+        "type": "ui_tab",
+        "name": "Relatórios ISI",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "60e85f68550541b8",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
