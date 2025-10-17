@@ -1,0 +1,200 @@
+[
+    {
+        "id": "1630d76be06da3af",
+        "type": "inject",
+        "z": "7ace9e43acaf6252",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 200,
+        "wires": [
+            [
+                "2b16acda89bf6b28"
+            ]
+        ]
+    },
+    {
+        "id": "2b16acda89bf6b28",
+        "type": "function",
+        "z": "7ace9e43acaf6252",
+        "name": "function 1",
+        "func": "// Criar Hoteis (XML) — versão corrigida com pares cidade/pais consistentes\nconst locais = [\n  { cidade: \"Lisboa\", pais: \"Portugal\" },\n  { cidade: \"Porto\",  pais: \"Portugal\" },\n  { cidade: \"Madrid\", pais: \"Espanha\" },\n  { cidade: \"Paris\",  pais: \"França\" },\n  { cidade: \"Roma\",   pais: \"Itália\" },\n  // podes adicionar mais pares se quiseres\n];\n\nlet xml = '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\\n<hoteis>\\n';\n\n// número de hotéis (podes alterar para gerar mais/menos)\nconst numHoteis = 5;\n\nfor (let i = 1; i <= numHoteis; i++) {\n    // escolhe aleatoriamente um par cidade/pais\n    const local = locais[Math.floor(Math.random() * locais.length)];\n    const quartos = Math.floor(Math.random() * 100) + 20;\n    const estrelas = Math.floor(Math.random() * 3) + 3;\n\n    xml += `  <hotel>\\n`;\n    xml += `    <id>${i}</id>\\n`;\n    xml += `    <nome>Hotel ${i}</nome>\\n`;\n    xml += `    <cidade>${local.cidade}</cidade>\\n`;\n    xml += `    <pais>${local.pais}</pais>\\n`;\n    xml += `    <quartos>${quartos}</quartos>\\n`;\n    xml += `    <estrelas>${estrelas}</estrelas>\\n`;\n    xml += `  </hotel>\\n`;\n}\n\nxml += '</hoteis>';\n\nmsg.payload = xml;\nmsg.filename = \"C:/ETL/hoteis.xml\"; // ajusta o caminho se necessário\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "903e16c1ddf6c83e"
+            ]
+        ]
+    },
+    {
+        "id": "903e16c1ddf6c83e",
+        "type": "file",
+        "z": "7ace9e43acaf6252",
+        "name": "hoteis xml",
+        "filename": "C:\\Users\\Diogo Machado\\Documents\\GitHub\\ISI\\data\\input\\hoteis.xml",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 720,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "214f0f0b8fb09d97",
+        "type": "inject",
+        "z": "7ace9e43acaf6252",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 280,
+        "wires": [
+            [
+                "cb0fc077a9ff3d44"
+            ]
+        ]
+    },
+    {
+        "id": "cb0fc077a9ff3d44",
+        "type": "function",
+        "z": "7ace9e43acaf6252",
+        "name": "function 2",
+        "func": "// Geração de clientes com nomes e emails (alguns inválidos)\nlet clientes = [];\n\nconst primeirosNomes = [\"Ana\", \"Bruno\", \"Carla\", \"Diogo\", \"Eduardo\", \"Filipa\", \"Gonçalo\", \"Helena\", \"Inês\", \"João\", \"Luís\", \"Marta\", \"Nuno\", \"Patrícia\", \"Rui\", \"Sofia\", \"Tiago\", \"Vera\"];\nconst apelidos = [\"Silva\", \"Santos\", \"Ferreira\", \"Costa\", \"Oliveira\", \"Pereira\", \"Rodrigues\", \"Martins\", \"Sousa\", \"Fernandes\"];\nconst dominios = [\"@gmail.com\", \"@hotmail.com\", \"@outlook.com\", \"@yahoo.com\"];\nconst paises = [\"Portugal\", \"Espanha\", \"França\"];\n\nfor (let i = 0; i < 10; i++) {\n    const primeiro = primeirosNomes[Math.floor(Math.random() * primeirosNomes.length)];\n    const ultimo = apelidos[Math.floor(Math.random() * apelidos.length)];\n    const nomeCompleto = `${primeiro} ${ultimo}`;\n\n    // Base do email\n    const emailBase = (primeiro + \".\" + ultimo).toLowerCase().normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\");\n\n    let email;\n    const gerarEmailInvalido = Math.random() < 0.3; // 30% de probabilidade\n\n    if (gerarEmailInvalido) {\n        // Alguns exemplos de emails inválidos\n        const opcoesInvalidas = [\n            `${emailBase}`,                    // sem domínio\n            `${emailBase}@`,                   // domínio incompleto\n            `${emailBase}@gmail`,              // sem .com\n            `${emailBase}@@hotmail.com`,       // dois @\n            `@@${emailBase}.com`,              // começa com @@\n            `${primeiro}${ultimo}@.com`        // domínio malformado\n        ];\n        email = opcoesInvalidas[Math.floor(Math.random() * opcoesInvalidas.length)];\n    } else {\n        // Email válido\n        email = emailBase + Math.floor(Math.random() * 100) + dominios[Math.floor(Math.random() * dominios.length)];\n    }\n\n    clientes.push({\n        id: i + 1,\n        nome: nomeCompleto,\n        email: email,\n        pais: paises[Math.floor(Math.random() * paises.length)]\n    });\n}\n\nmsg.payload = JSON.stringify(clientes, null, 2);\nmsg.filename = \"C:/ETL/clientes.json\";  // Caminho de saída\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 280,
+        "wires": [
+            [
+                "cd5aabef05534d9d"
+            ]
+        ]
+    },
+    {
+        "id": "cd5aabef05534d9d",
+        "type": "file",
+        "z": "7ace9e43acaf6252",
+        "name": "clientes json",
+        "filename": "C:\\Users\\Diogo Machado\\Documents\\GitHub\\ISI\\data\\input\\clientes.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 730,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a2b35406497b27c6",
+        "type": "inject",
+        "z": "7ace9e43acaf6252",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 360,
+        "wires": [
+            [
+                "8420d4bad0a20e28"
+            ]
+        ]
+    },
+    {
+        "id": "8420d4bad0a20e28",
+        "type": "function",
+        "z": "7ace9e43acaf6252",
+        "name": "function 3",
+        "func": "let reservas = [];\nconst estados = [\"confirmada\", \"pendente\", \"cancelada\"];\nconst hoteis = [1,2,3,4,5];\nconst clientes = [1,2,3,4,5,6,7,8,9,10];\n\nfor (let i = 0; i < 20; i++) {\n    const checkIn = new Date(2025, 9, Math.floor(Math.random() * 28) + 1);\n    const checkOut = new Date(checkIn);\n    checkOut.setDate(checkOut.getDate() + Math.floor(Math.random() * 5) + 1);\n\n    reservas.push({\n        id: i + 1,\n        cliente_id: clientes[Math.floor(Math.random() * clientes.length)],\n        hotel_id: hoteis[Math.floor(Math.random() * hoteis.length)],\n        check_in: checkIn.toISOString().split('T')[0],\n        check_out: checkOut.toISOString().split('T')[0],\n        preco_por_noite: (Math.random() * 100 + 50).toFixed(2),\n        estado: estados[Math.floor(Math.random() * estados.length)]\n    });\n}\n\n// Converter para CSV manualmente\nlet csv = \"id,cliente_id,hotel_id,check_in,check_out,preco_por_noite,estado\\n\";\nfor (let r of reservas) {\n    csv += `${r.id},${r.cliente_id},${r.hotel_id},${r.check_in},${r.check_out},${r.preco_por_noite},${r.estado}\\n`;\n}\n\nmsg.payload = csv;\nmsg.filename = \"C:/ETL/reservas.csv\";  // Altera o caminho se quiseres\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 360,
+        "wires": [
+            [
+                "4da541c6dd8d4143"
+            ]
+        ]
+    },
+    {
+        "id": "4da541c6dd8d4143",
+        "type": "file",
+        "z": "7ace9e43acaf6252",
+        "name": "reservas csv",
+        "filename": "C:\\Users\\Diogo Machado\\Documents\\GitHub\\ISI\\data\\input\\reservas.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 730,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    }
+]
