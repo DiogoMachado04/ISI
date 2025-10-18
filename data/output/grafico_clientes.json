@@ -1,0 +1,25 @@
+[
+  {
+    "series": [
+      "Total Gasto"
+    ],
+    "data": [
+      [
+        1007.8,
+        596.49,
+        76.53,
+        315.21,
+        240.8,
+        439.84
+      ]
+    ],
+    "labels": [
+      "Patrícia Pereira",
+      "Clientes Inválidos",
+      "Diogo Pereira",
+      "Inês Oliveira",
+      "Diogo Rodrigues",
+      "Rui Silva"
+    ]
+  }
+]

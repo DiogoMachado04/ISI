@@ -1,0 +1,21 @@
+[
+  {
+    "series": [
+      "Total Recebido"
+    ],
+    "data": [
+      [
+        240.8,
+        885.25,
+        954.13,
+        596.49
+      ]
+    ],
+    "labels": [
+      "Hotel 1",
+      "Hotel 2",
+      "Hotel 3",
+      "Hotel 5"
+    ]
+  }
+]
