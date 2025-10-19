@@ -448,51 +448,6 @@
     </hop>
   </order>
   <step>
-    <name>Get file names</name>
-    <type>GetFileNames</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <filter>
-      <filterfiletype>all_files</filterfiletype>
-    </filter>
-    <doNotFailIfNoFile>N</doNotFailIfNoFile>
-    <rownum>N</rownum>
-    <isaddresult>Y</isaddresult>
-    <filefield>N</filefield>
-    <rownum_field/>
-    <filename_Field/>
-    <wildcard_Field/>
-    <exclude_wildcard_Field/>
-    <dynamic_include_subfolders>N</dynamic_include_subfolders>
-    <limit>0</limit>
-    <file>
-      <name>${Internal.Entry.Current.Directory}\..\graficos</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>240</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Add constants</name>
     <type>Constant</type>
     <description/>
@@ -607,7 +562,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>Envia-se em anexo os gráficos com os valores totais ganhos peloshotéis e gastos pelos clientes</nullif>
+        <nullif>Envia-se em anexo os gráficos com os valores totais ganhos pelos hotéis e gastos pelos clientes</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -634,8 +589,53 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>224</yloc>
+      <xloc>496</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get file names</name>
+    <type>GetFileNames</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <filter>
+      <filterfiletype>all_files</filterfiletype>
+    </filter>
+    <doNotFailIfNoFile>N</doNotFailIfNoFile>
+    <rownum>N</rownum>
+    <isaddresult>Y</isaddresult>
+    <filefield>N</filefield>
+    <rownum_field/>
+    <filename_Field/>
+    <wildcard_Field/>
+    <exclude_wildcard_Field/>
+    <dynamic_include_subfolders>N</dynamic_include_subfolders>
+    <limit>0</limit>
+    <file>
+      <name>${Internal.Entry.Current.Directory}\..\graficos</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -666,8 +666,8 @@
     <attachContentFromField>N</attachContentFromField>
     <attachContentField>filename</attachContentField>
     <attachContentFileNameField>filename</attachContentFileNameField>
-    <dynamicFieldname/>
-    <dynamicWildcard/>
+    <dynamicFieldname>filename</dynamicFieldname>
+    <dynamicWildcard>wildcard</dynamicWildcard>
     <dynamicZipFilename/>
     <sourcefilefoldername>${Internal.Entry.Current.Directory}\..\graficos</sourcefilefoldername>
     <sourcewildcard/>
@@ -676,7 +676,7 @@
     <comment>comment</comment>
     <include_files>N</include_files>
     <zip_files>N</zip_files>
-    <zip_name/>
+    <zip_name>graficos</zip_name>
     <zip_limit_size>0</zip_limit_size>
     <use_auth>Y</use_auth>
     <use_secure_auth>Y</use_secure_auth>
@@ -701,8 +701,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
-      <yloc>224</yloc>
+      <xloc>624</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

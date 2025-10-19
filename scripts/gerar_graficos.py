@@ -2,7 +2,7 @@ import json
 import matplotlib.pyplot as plt
 import os
 
-# --- Diretório base (onde o script está localizado) ---
+# --- Diretoria base (onde o script está localizado) ---
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 # --- Caminhos fixos para os ficheiros JSON ---
@@ -15,7 +15,7 @@ json_files = [
 print("Script iniciado")
 
 
-# --- Diretório de saída ---
+# --- Diretoria de saída ---
 output_dir = os.path.join(base_dir, '..','graficos')
 os.makedirs(output_dir, exist_ok=True)
 
@@ -42,7 +42,7 @@ def gerar_grafico(json_path, chart_name):
     plt.tight_layout()
     plt.savefig(output_path)
     plt.close()
-    print(f"✅ Gráfico criado: {output_path}")
+    print(f"Gráfico criado: {output_path}")
 
 # --- Gerar gráficos para ambos os ficheiros ---
 for filename, chart_name in json_files:
@@ -50,7 +50,7 @@ for filename, chart_name in json_files:
     if os.path.exists(json_path):
         gerar_grafico(json_path, chart_name)
     else:
-        print(f"⚠️ Ficheiro não encontrado: {json_path}")
+        print(f"Ficheiro não encontrado: {json_path}")
 
 print(f"\nTodos os gráficos foram gerados em: {output_dir}")
 
